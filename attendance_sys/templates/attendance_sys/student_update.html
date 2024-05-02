@@ -1,0 +1,83 @@
+{% extends 'attendance_sys/student_main.html' %} {% block content %}
+
+<style>
+  .profile-pic {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card card-body">
+        <a class="btn btn-warning" href="{% url 'Student Home' %}">
+          &#8592; Back to Home</a
+        >
+        <hr />
+        <h3 style="text-align: center">Student Profile Pic</h3>
+        <hr />
+        <img
+          class="img-responsive profile-pic"
+          src="{{ student.profile_pic.url }}"
+        />
+      </div>
+    </div>
+    <div class="col-md-9">
+      <form
+        action="{% url 'updateStudent' %}"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+        <div
+          class="form-group"
+          style="visibility: hidden !important; margin-top: -40px"
+        >
+          <input
+            type="text"
+            class="form-control"
+            value="{{ prev_roll_num }}"
+            name="prev_roll_num"
+          />
+        </div>
+        <div class="form-group">
+          <label for="id_firstname">First Name:</label>
+          {{ form.firstname }}
+        </div>
+        <div class="form-group">
+          <label for="id_lastname">Last Name:</label>
+          {{ form.lastname }}
+        </div>
+        <div class="form-group">
+          <label for="id_lastname">Roll Number:</label>
+          {{ form.roll_num }}
+        </div>
+        <div class="form-group">
+          <label for="id_lastname">Branch:</label>
+          {{ form.branch }}
+        </div>
+        <div class="form-group">
+          <label for="id_lastname">Year:</label>
+          {{ form.year }}
+        </div>
+        <div class="form-group">
+          <label for="id_lastname">Course:</label>
+          {{ form.course }}
+        </div>
+        <div class="form-group">
+          <label for="id_lastname">Profile Pic:</label>
+          {{ form.profile_pic }}
+        </div>
+        <input
+          class="btn btn-primary"
+          type="submit"
+          name="Update Information"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

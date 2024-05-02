@@ -1,0 +1,92 @@
+{% extends 'attendance_sys/faculty_main.html' %} {% block content %}
+
+<style>
+  .profile-pic {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" style="margin-top: 20px">
+      <div class="card card-body">
+        <center><h3>Register Student</h3></center>
+        <form
+          class="form-horizontal"
+          action="{% url 'Faculty register' %}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label">Enter First Name:</label>
+                {{ studentForm.firstname }}
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label">Enter Last Name:</label>
+                {{ studentForm.lastname }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Enter Roll Number:</label>
+                {{ studentForm.roll_num }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="sel1">Select Branch:</label>
+                {{ studentForm.branch }}
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="sel1">Select Year:</label>
+                {{ studentForm.year }}
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="sel1">Select Course:</label>
+
+                <select name="course" class="form-control" id="sel1">
+                  <option value selected>---------</option>
+                  <option value="CSL2060">
+                    Software Engineering : CSL 2060
+                  </option>
+                  <option value="CSL2050">
+                    Pattern Recognition & Machine Learning : CSL 2060
+                  </option>
+                  <option value="EEL2020">Digital Design : EEL 2020</option>
+                  <option value="MEL2020">Thermodynamics : MEL 2020</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="form-group" style="border: none">
+                <label class="control-label">Upload Profile Picture:</label>
+                {{ studentForm.profile_pic }}
+              </div>
+            </div>
+            <div class="col-md-3"></div>
+          </div>
+          <button type="submit" class="btn btn-block btn-info">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>
