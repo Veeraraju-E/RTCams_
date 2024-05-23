@@ -26,7 +26,7 @@ Finally run the server using:
 ```python 
 python manage.py runserver
 ```
-# Project Structure
+# Project Directory Structure
 ```bash
 ├───attendance_sys
 │   ├───migrations
